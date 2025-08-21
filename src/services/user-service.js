@@ -26,8 +26,6 @@ class UserService {
       salt,
     });
 
-    console.log(existentUser);
-
     const token = await GenerateSignature({
       email: email,
       _id: existentUser._id,
@@ -41,7 +39,6 @@ class UserService {
 
     try {
       const existingUser = await this.repository.FindUser({ email });
-      console.log(existingUser.salt);
       if (existingUser) {
         const validPassword = await ValidatePassword(
           password,
